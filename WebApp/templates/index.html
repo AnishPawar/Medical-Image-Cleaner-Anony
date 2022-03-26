@@ -65,13 +65,17 @@
         <!-- Font Awesome -->
         <link
             rel="stylesheet"
-            href="assets/libs/@fortawesome/fontawesome-free/css/all.min.css"
+            href = "{{ url_for('static',filename='assets/libs/@fortawesome/fontawesome-free/css/all.min.css') }}"
+            <!-- href="assets/libs/@fortawesome/fontawesome-free/css/all.min.css" -->
+
+            
         />
         <!-- Quick CSS -->
         <link
             rel="stylesheet"
-            href="assets/css/quick-website.css"
-            id="stylesheet"
+            href = "{{ url_for('static',filename='assets/css/quick-website.css') }}"
+            <!-- href="assets/css/quick-website.css" -->
+            <!-- id="stylesheet" -->
         />
     </head>
 
@@ -108,7 +112,7 @@
                         <figure class="w-100">
                             <img
                                 alt="Image placeholder"
-                                src="assets/img/svg/illustrations/illustration-3.svg"
+                                src="static/assets/img/svg/illustrations/illustration-3.svg"
                                 class="img-fluid mw-md-120"
                             />
                         </figure>
@@ -157,7 +161,7 @@
                             <div class="card-body pb-5">
                                 <div class="pt-4 pb-5">
                                     <img
-                                        src="assets/img/svg/illustrations/illustration-5.svg"
+                                        src="static/assets/img/svg/illustrations/illustration-5.svg"
                                         class="img-fluid img-center"
                                         style="height: 150px"
                                         alt="Illustration"
@@ -176,7 +180,7 @@
                             <div class="card-body pb-5">
                                 <div class="pt-4 pb-5">
                                     <img
-                                        src="assets/img/svg/illustrations/illustration-6.svg"
+                                        src="static/assets/img/svg/illustrations/illustration-6.svg"
                                         class="img-fluid img-center"
                                         style="height: 150px"
                                         alt="Illustration"
@@ -195,7 +199,7 @@
                             <div class="card-body pb-5">
                                 <div class="pt-4 pb-5">
                                     <img
-                                        src="assets/img/svg/illustrations/illustration-7.svg"
+                                        src="static/assets/img/svg/illustrations/illustration-7.svg"
                                         class="img-fluid img-center"
                                         style="height: 150px"
                                         alt="Illustration"
@@ -223,12 +227,78 @@
                         </div>
                     </form>
                 </div> -->
-                <div>
+                <!-- <div>
                     <input type="file" id="inpFile" accept="image/*" multiple />
 
                     <button id="btnUpload">Upload files</button>
                 </div>
-                <div id="img-preview"></div>
+                <div id="img-preview"></div> -->
+            <div class="row" style="width:85%;">
+                <div class="col-md-12 col-xl-6 mb-4">
+                    <div class="card shadow border-start-primary py-2">
+                      <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                          <div class="col me-2">
+                            <div
+                              class="text-uppercase text-primary fw-bold text-xs mb-1"
+                            >
+                              <span>Upload&nbsp;File</span>
+                            </div>
+                            <div class="text-dark fw-bold h5 mb-0">
+                              <span>
+    
+                                <form enctype = "multipart/form-data" onsubmit=" return false;" >
+                                  <input id="file" type="file" name="static_file" />
+                                  <button class="btn btn-primary btn-sm d-none d-sm-inline-block"  id="upload-button" onclick="uploadFile(this.form)"> Upload </button>
+                                  </form>
+                                <!-- <div id="static_file_response"> </div> -->
+                               
+                                <script type="text/javascript" src="/static/app.js"></script>
+                                </script>
+    
+                              </span>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                <div class="col-md-12 col-xl-6 mb-4">
+                    <div class="card shadow border-start-primary py-2">
+                      <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                          <div class="col me-2">
+                            
+                            <div class="text-dark fw-bold h5 mb-0">
+                              <span>
+                                <form action="" method="post">
+
+                                  <div class="text-center text-md-left mt-5">
+                                    <button class="btn btn-primary btn-icon" name="foox" value="1">
+                                        &nbsp;Process!
+                                    </button>
+                                    <!-- <a href="#" class="btn btn-primary btn-icon" target="_blank">
+                                        <span class="btn-inner--text">Process!</span>
+                                        <span class="btn-inner--icon"
+                                            ><i data-feather="chevron-right"></i
+                                        ></span>
+                                    </a> -->
+                                  </div>
+                                
+                                
+                                
+                                </form>
+                              </span>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
             </div>
         </section>
         <section class="slice slice-lg bg-section-dark pt-5 pt-lg-8">
@@ -534,7 +604,7 @@
                             <a href="index.html">
                                 <img
                                     alt="Image placeholder"
-                                    src="assets/img/brand/light.svg"
+                                    src="static/assets/img/brand/light.svg"
                                     id="footer-logo"
                                 />
                             </a>
@@ -646,12 +716,12 @@
             </div>
         </footer>
         <!-- Core JS  -->
-        <script src="assets/libs/jquery/dist/jquery.min.js"></script>
-        <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/svg-injector/dist/svg-injector.min.js"></script>
-        <script src="assets/libs/feather-icons/dist/feather.min.js"></script>
+        <script src="static/assets/libs/jquery/dist/jquery.min.js"></script>
+        <script src="static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="static/assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+        <script src="static/assets/libs/feather-icons/dist/feather.min.js"></script>
         <!-- Quick JS -->
-        <script src="assets/js/quick-website.js"></script>
+        <script src="static/assets/js/quick-website.js"></script>
         <!-- Feather Icons -->
         <script>
             feather.replace({
