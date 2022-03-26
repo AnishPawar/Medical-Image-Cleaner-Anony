@@ -35,6 +35,6 @@ def upload_static_file():
     # closed = x['Volume'].values.tolist()
     return render_template("index.html")
 
-
+# Akshat 
 if __name__ == "__main__":
     app.run()
