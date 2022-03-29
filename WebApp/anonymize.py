@@ -128,47 +128,54 @@ def batchAnonymize(imgDir,ocr):
 
     for imgSingle in os.listdir(imgDir):
         # print(f'{imgDir}/{i}')
-        img = cv2.imread(f'{imgDir}/{imgSingle}')
-        dat = ocr.detectText(img)
-        
-        textstr = ''
-        for i in dat:
-            textstr+= f'{i[1]} '
-        
-        textNLP = NLP(textstr)
-        retlist = []
-        for i in textNLP:
-            retlist.append(fuzzy_matching(i))
 
-        unique  = []
-        for i in retlist:
-            if i:
-                unique.append(i[0])
-        
-        set(unique)
-        dataDict = {'coords':[],'text':[]}
+        if imgSingle!=".DS_Store":
 
-        for i in dat:
-            # print(i)
-            dataDict['coords'].append(i[0])
-            dataDict['text'].append(i[1])
-        
-        coorList = []
+            img = cv2.imread(f'{imgDir}{imgSingle}')
+
+            print(f'{imgDir}/{imgSingle}')
+
+            dat = ocr.detectText(img)
+            
+            textstr = ''
+            for i in dat:
+                textstr+= f'{i[1]} '
+            
+            textNLP = NLP(textstr)
+            retlist = []
+            for i in textNLP:
+                retlist.append(fuzzy_matching(i))
+
+            unique  = []
+            for i in retlist:
+                if i:
+                    unique.append(i[0])
+            
+            set(unique)
+            dataDict = {'coords':[],'text':[]}
+
+            for i in dat:
+                # print(i)
+                dataDict['coords'].append(i[0])
+                dataDict['text'].append(i[1])
+            
+            coorList = []
 
 
-        for i in set(unique):
-            # print(i.lower())
-            for j in range(len(dat)):
-                text = dat[j][1].split(' ')
-                for word in text:
-                    if i.lower() == word.lower():
-                        
-                        coorList.append(dat[j][0])
-        print("I Isss")
-        print(imgSingle)
-        for coor in coorList:
-            img = cv2.rectangle(img, coor[0], coor[2], (0,255,0), -1)
-        print("I Isss111")
-        print(imgSingle)
-        cv2.imwrite('static/output_img.jpg',img)
+            for i in set(unique):
+                # print(i.lower())
+                for j in range(len(dat)):
+                    text = dat[j][1].split(' ')
+                    for word in text:
+                        if i.lower() == word.lower():
+                            
+                            coorList.append(dat[j][0])
+            print("I Isss")
+            print(imgSingle)
+            for coor in coorList:
+                img = cv2.rectangle(img, coor[0], coor[2], (0,255,0), -1)
+            print("I Isss111")
+            print(imgSingle)
+            cv2.imwrite(f'static/outputs/{imgSingle}',img)
     return f'{imgDir[7:]}/x{imgSingle}'
+    

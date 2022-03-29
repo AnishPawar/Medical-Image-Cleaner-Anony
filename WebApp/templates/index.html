@@ -248,7 +248,7 @@
                               <span>
     
                                 <form enctype = "multipart/form-data" onsubmit=" return false;" >
-                                  <input id="file" type="file" name="static_file" />
+                                  <input id="file" type="file" name="static_file" multiple/>
                                   <button class="btn btn-primary btn-sm d-none d-sm-inline-block"  id="upload-button" onclick="uploadFile(this.form)"> Upload </button>
                                   </form>
                                 <!-- <div id="static_file_response"> </div> -->
@@ -274,7 +274,7 @@
                             <div class="text-dark fw-bold h5 mb-0">
                               <span>
                                 
-                                <a href="{{ url_for('static',filename='output_img.jpg') }}" download>
+                                <a href="{{ url_for('static',filename='outputImages.zip') }}" download>
                                     <button class="btn btn-primary btn-icon" name="foox" value="1">
                                         &nbsp;Process & download
                                     </button>
