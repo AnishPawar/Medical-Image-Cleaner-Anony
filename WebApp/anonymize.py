@@ -122,7 +122,7 @@ def fuzzy_matching(text):
 
 def batchAnonymize(imgDir,ocr):
     # dstImg = f'{imgDir}/'
-    print("IT")
+    # print("IT")
     print(imgDir)
     # os.mkdir(f'{imgDir}/output')
 
@@ -131,11 +131,21 @@ def batchAnonymize(imgDir,ocr):
 
         if imgSingle!=".DS_Store":
 
+            # print()
+
             img = cv2.imread(f'{imgDir}{imgSingle}')
+            h,w,c = img.shape
+            # print(w,h,c)
+
+            aspectRatio = w/h
+
+
+            imgOCR = cv2.resize(img,(int(500*aspectRatio),500))
+            print(img.shape,aspectRatio,imgOCR.shape)
 
             print(f'{imgDir}/{imgSingle}')
 
-            dat = ocr.detectText(img)
+            dat = ocr.detectText(imgOCR)
             
             textstr = ''
             for i in dat:
@@ -172,8 +182,16 @@ def batchAnonymize(imgDir,ocr):
                             coorList.append(dat[j][0])
             print("I Isss")
             print(imgSingle)
+
+            h1,w1,c1 = img.shape
+            h2,w2,c2 = imgOCR.shape
+
             for coor in coorList:
-                img = cv2.rectangle(img, coor[0], coor[2], (0,255,0), -1)
+                # print(coor[0])
+
+
+
+                img = cv2.rectangle(img, (int(coor[0][0]*(h1/h2)), int(coor[0][1]*(w1/w2))), (int(coor[2][0]*(h1/h2)), int(coor[2][1]*(w1/w2))), (0,255,0), -1)
             print("I Isss111")
             print(imgSingle)
             cv2.imwrite(f'static/outputs/{imgSingle}',img)
